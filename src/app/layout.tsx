@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body className={lato.className} suppressHydrationWarning={true}>{children}</body>
     </html>
   );
 }
