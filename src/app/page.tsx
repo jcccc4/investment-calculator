@@ -20,7 +20,7 @@ export default function Home() {
         <Image src={"/logo.png"} alt={"logo"} width="40" height="40" />
         <h1 className="text-2xl gap-2">Investment Calculator</h1>
       </header>
-      <main >
+      <main className="[&>*]:child-card">
         <InputDetails />
         <CardTable />
       </main>

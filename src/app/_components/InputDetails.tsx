@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -12,6 +13,15 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import FormInputs from "./form/FormInputs";
 import { Inputs } from "../page";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+import { Link } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {};
 
@@ -27,7 +37,7 @@ function InputDetails({}: Props) {
   });
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
   return (
-    <div className="border border-muted shadow-section rounded-2xl p-4 mt-4">
+    <section>
       <section>
         <h2 className="text-2xl">Input Details</h2>
       </section>
@@ -42,7 +52,38 @@ function InputDetails({}: Props) {
             />
             <FormInputs form={form} name={"after"} label={"After"} />
             <FormInputs form={form} name={"returnRate"} label={"Return Rate"} />
-            <FormInputs form={form} name={"compound"} label={"Compound"} />
+            <FormField
+              control={form.control}
+              name="compound"
+              render={({ field }) => (
+                <FormItem className={"relative mt-[-7px]"}>
+                  <FormLabel className={"absolute top-0 left-3 px-1 bg-white"}>
+                    Compound
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl className="w-40">
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Annually">Annually</SelectItem>
+                      <SelectItem value="Semiannually">Semiannually</SelectItem>
+                      <SelectItem value="Quarterly">Quarterly</SelectItem>
+                      <SelectItem value="Monthly">Monthly</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {/* <FormDescription>
+                    You can manage email addresses in your{" "}
+                    <Link href="/examples/forms">email settings</Link>.
+                  </FormDescription> */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormInputs form={form} name={"addOn"} label={"Add-on"} />
             <div className="flex gap-4">
               <FormField
@@ -116,7 +157,7 @@ function InputDetails({}: Props) {
           </div>
         </form>
       </Form>
-    </div>
+    </section>
   );
 }
 

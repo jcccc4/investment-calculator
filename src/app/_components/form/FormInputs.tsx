@@ -16,12 +16,12 @@ export default function FormInputs({ form, name, label }: Props) {
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem className={"relative pt-[7px] mt-[-7px]"}>
+        <FormItem className={"relative mt-[-7px]"}>
           <FormLabel className={"absolute top-0 left-3 px-1  bg-white"}>
             {label}
           </FormLabel>
           <FormControl>
-          <Input placeholder="shadcn" {...field} />
+          <Input className={'w-40'} placeholder="shadcn" {...field} />
           </FormControl>
           {/* <FormDescription>This is your public display name.</FormDescription> */}
           <FormMessage />
