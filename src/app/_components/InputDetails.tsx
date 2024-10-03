@@ -33,6 +33,8 @@ function InputDetails({}: Props) {
       returnRate: 10,
       compound: "Annually",
       addOn: 1000,
+      type: "Beginning",
+      each: "Beginning",
     },
   });
   const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
@@ -100,7 +102,7 @@ function InputDetails({}: Props) {
                       >
                         <FormItem className="flex items-center space-x-1 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="beginning" />
+                            <RadioGroupItem value="Beginning" />
                           </FormControl>
                           <FormLabel className="font-normal">
                             Beginning
@@ -108,7 +110,7 @@ function InputDetails({}: Props) {
                         </FormItem>
                         <FormItem className="flex items-center space-x-1 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="end" />
+                            <RadioGroupItem value="End" />
                           </FormControl>
                           <FormLabel className="font-normal">End</FormLabel>
                         </FormItem>
@@ -123,7 +125,7 @@ function InputDetails({}: Props) {
                 name="each"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <FormLabel>Contribute at the</FormLabel>
+                    <FormLabel>Each</FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
@@ -132,7 +134,7 @@ function InputDetails({}: Props) {
                       >
                         <FormItem className="flex items-center space-x-1 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="beginning" />
+                            <RadioGroupItem value="Beginning" />
                           </FormControl>
                           <FormLabel className="font-normal">
                             Beginning
@@ -140,7 +142,7 @@ function InputDetails({}: Props) {
                         </FormItem>
                         <FormItem className="flex items-center space-x-1 space-y-0">
                           <FormControl>
-                            <RadioGroupItem value="end" />
+                            <RadioGroupItem value="End" />
                           </FormControl>
                           <FormLabel className="font-normal">End</FormLabel>
                         </FormItem>
