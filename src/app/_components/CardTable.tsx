@@ -1,36 +1,35 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { Dispatch, SetStateAction } from "react";
+import { Data, Inputs } from "../page";
+import { investmentCalculator } from "./form/investmentCalculator";
 
-import React from "react";
-const data = [
-  {
-    deposit: 32000,
-    interest: 1526.53,
-    endingBalance: 33526.53,
-  },
-  {
-    deposit: 12000.0,
-    interest: 2338.12,
-    endingBalance: 47864.65,
-  },
-  {
-    deposit: 12000.0,
-    interest: 3198.41,
-    endingBalance: 63063.06,
-  },
-];
-export default function CardTable() {
+export default function CardTable({
+  data,
+  setData,
+  formResult,
+}: {
+  data: Data[];
+  formResult: Inputs;
+  setData: Dispatch<SetStateAction<Data[]>>;
+}) {
+  console.log(formResult);
+
   return (
-    <Tabs defaultValue="yearly" className="w-full ">
+    <Tabs
+      defaultValue="yearly"
+      className="w-full "
+      onValueChange={(value) =>
+        setData(investmentCalculator(formResult, value))
+      }
+    >
       <TabsList className=" grid grid-cols-2">
         <TabsTrigger value="yearly">YEARLY</TabsTrigger>
         <TabsTrigger value="monthly">MONTHLY</TabsTrigger>
@@ -40,29 +39,58 @@ export default function CardTable() {
           <TableHeader className="bg-muted pt-40">
             <TableRow className="bg-muted relative">
               <TableHead className="text-center w-[60px] h-10">Year</TableHead>
-              <TableHead className="text-right min-w-40">Ending Balance</TableHead>
               <TableHead className="text-right min-w-40">Deposit</TableHead>
               <TableHead className="text-right min-w-40">Interest</TableHead>
+              <TableHead className="text-right min-w-40">
+                Ending Balance
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((data, index) => (
-              <TableRow key={`tabledata-${index + 1}`} >
-                <TableCell className="text-center font-medium " >
-                  {index + 1}
-                </TableCell>
-                <TableCell className="text-right">{data.interest}</TableCell>
-                <TableCell className="text-right">{data.interest}</TableCell>
-                <TableCell className="text-right">
-                  {data.endingBalance}
-                </TableCell>
-              </TableRow>
-            ))}
+            {data.length > 0 &&
+              data.map((data, index) => (
+                <TableRow key={`tabledata-${index + 1}`}>
+                  <TableCell className="text-center font-medium ">
+                    {data.year}
+                  </TableCell>
+                  <TableCell className="text-right">{data.deposit}</TableCell>
+                  <TableCell className="text-right">{data.interest}</TableCell>
+                  <TableCell className="text-right">
+                    {data.endingBalance}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TabsContent>
       <TabsContent value="monthly">
-        <h1>hi</h1>
+        <Table className="pt-40 ">
+          <TableHeader className="bg-muted pt-40">
+            <TableRow className="bg-muted relative">
+              <TableHead className="text-center w-[60px] h-10">Year</TableHead>
+              <TableHead className="text-right min-w-40">Deposit</TableHead>
+              <TableHead className="text-right min-w-40">Interest</TableHead>
+              <TableHead className="text-right min-w-40">
+                Ending Balance
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.length > 0 &&
+              data.map((data, index) => (
+                <TableRow key={`tabledata-${index + 1}`}>
+                  <TableCell className="text-center font-medium ">
+                    {data.year}
+                  </TableCell>
+                  <TableCell className="text-right">{data.deposit}</TableCell>
+                  <TableCell className="text-right">{data.interest}</TableCell>
+                  <TableCell className="text-right">
+                    {data.endingBalance}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
       </TabsContent>
     </Tabs>
   );

@@ -8,13 +8,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import FormInputs from "./form/FormInputs";
-import { Inputs } from "../page";
+import { Data, initialData, Inputs } from "../page";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-import { Link } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -22,22 +21,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { investmentCalculator } from "./form/investmentCalculator";
 
-type Props = {};
+type Props = {
+  setData: Dispatch<SetStateAction<Data[]>>;
+  setFormResult: Dispatch<SetStateAction<Inputs>>;
+};
 
-function InputDetails({}: Props) {
+function InputDetails({ setData, setFormResult }: Props) {
   const form = useForm<Inputs>({
-    defaultValues: {
-      startingAmount: 20000,
-      after: 1,
-      returnRate: 10,
-      compound: "Annually",
-      addOn: 1000,
-      type: "Beginning",
-      each: "Beginning",
-    },
+    defaultValues: initialData,
   });
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setData(investmentCalculator(data));
+  };
+
   return (
     <section>
       <section>
