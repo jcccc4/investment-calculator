@@ -9,26 +9,29 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { Dispatch, SetStateAction } from "react";
 import { Data, Inputs } from "../page";
-import { investmentCalculator } from "./form/investmentCalculator";
+import { investmentCalculator } from "../../lib/investmentCalculator";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CardTable({
   data,
   setData,
   formResult,
+  setTab,
 }: {
   data: Data[];
   formResult: Inputs;
   setData: Dispatch<SetStateAction<Data[]>>;
+  setTab: Dispatch<SetStateAction<string>>;
 }) {
-  console.log(formResult);
 
   return (
     <Tabs
       defaultValue="yearly"
       className="w-full "
-      onValueChange={(value) =>
-        setData(investmentCalculator(formResult, value))
-      }
+      onValueChange={(value) => {
+        setTab(value);
+        setData(investmentCalculator(formResult, value));
+      }}
     >
       <TabsList className=" grid grid-cols-2">
         <TabsTrigger value="yearly">YEARLY</TabsTrigger>
@@ -49,7 +52,7 @@ export default function CardTable({
           <TableBody>
             {data.length > 0 &&
               data.map((data, index) => (
-                <TableRow key={`tabledata-${index + 1}`}>
+                <TableRow key={uuidv4()}>
                   <TableCell className="text-center font-medium ">
                     {data.year}
                   </TableCell>

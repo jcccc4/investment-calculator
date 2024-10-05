@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,19 +20,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { investmentCalculator } from "./form/investmentCalculator";
+import { investmentCalculator } from "../../lib/investmentCalculator";
 
 type Props = {
   setData: Dispatch<SetStateAction<Data[]>>;
   setFormResult: Dispatch<SetStateAction<Inputs>>;
+  tab: string;
 };
 
-function InputDetails({ setData, setFormResult }: Props) {
+function InputDetails({ setData, setFormResult, tab }: Props) {
   const form = useForm<Inputs>({
     defaultValues: initialData,
   });
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    setData(investmentCalculator(data));
+    data.addOn = Number(data.addOn);
+    data.startingAmount = Number(data.startingAmount);
+    setFormResult(data);
+    setData(investmentCalculator(data, tab));
   };
 
   return (
@@ -85,73 +88,68 @@ function InputDetails({ setData, setFormResult }: Props) {
               )}
             />
             <FormInputs form={form} name={"addOn"} label={"Add-on"} />
-            <div className="flex gap-4">
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem className="space-y-2">
-                    <FormLabel>Contribute at the</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col m-0"
-                      >
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="Beginning" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Beginning
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="End" />
-                          </FormControl>
-                          <FormLabel className="font-normal">End</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="each"
-                render={({ field }) => (
-                  <FormItem className="space-y-2">
-                    <FormLabel>Each</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                        className="flex flex-col m-0"
-                      >
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="Beginning" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Beginning
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="End" />
-                          </FormControl>
-                          <FormLabel className="font-normal">End</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Contribute at the:</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex m-0"
+                    >
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Beginning" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Beginning</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="End" />
+                        </FormControl>
+                        <FormLabel className="font-normal">End</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="each"
+              render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>Each:</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex m-0"
+                    >
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Month" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Month</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Year" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Year</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
+
           <div className="flex w-full justify-end mt-4">
             <Button type="submit">Calculate</Button>
           </div>

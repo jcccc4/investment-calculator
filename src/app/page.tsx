@@ -3,7 +3,7 @@ import Image from "next/image";
 import InputDetails from "./_components/InputDetails";
 import CardTable from "./_components/CardTable";
 import { useState } from "react";
-import { investmentCalculator } from "./_components/form/investmentCalculator";
+import { investmentCalculator } from "../lib/investmentCalculator";
 
 export type Inputs = {
   startingAmount: number;
@@ -17,9 +17,9 @@ export type Inputs = {
 
 export type Data = {
   year: number;
-  deposit: number;
-  interest: number;
-  endingBalance: number;
+  deposit: string;
+  interest: string;
+  endingBalance: string;
 };
 
 export const initialData: Inputs = {
@@ -28,15 +28,14 @@ export const initialData: Inputs = {
   returnRate: 6,
   compound: "Annually",
   addOn: 1000,
-  type: "Amount",
-  each: "",
+  type: "End",
+  each: "Month",
 };
 
 export default function Home() {
   const [formResult, setFormResult] = useState<Inputs>(initialData);
-  const [data, setData] = useState<Data[]>(
-    investmentCalculator(initialData)
-  );
+  const [data, setData] = useState<Data[]>(investmentCalculator(initialData));
+  const [tab, setTab] = useState<string>("yearly");
 
   return (
     <div className="mx-4">
@@ -45,8 +44,17 @@ export default function Home() {
         <h1 className="text-2xl gap-2">Investment Calculator</h1>
       </header>
       <main className="[&>*]:child-card ">
-        <InputDetails setData={setData} setFormResult={setFormResult}/>
-        <CardTable data={data} setData={setData} formResult={formResult} />
+        <InputDetails
+          setData={setData}
+          setFormResult={setFormResult}
+          tab={tab}
+        />
+        <CardTable
+          data={data}
+          setData={setData}
+          formResult={formResult}
+          setTab={setTab}
+        />
       </main>
     </div>
   );
