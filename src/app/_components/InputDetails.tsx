@@ -52,9 +52,20 @@ function InputDetails({ setData, setFormResult, tab }: Props) {
               form={form}
               name={"startingAmount"}
               label={"Starting Amount"}
+              sign="$"
             />
-            <FormInputs form={form} name={"after"} label={"After"} />
-            <FormInputs form={form} name={"returnRate"} label={"Return Rate"} />
+            <FormInputs
+              form={form}
+              name={"after"}
+              label={"After"}
+              sign="Years"
+            />
+            <FormInputs
+              form={form}
+              name={"returnRate"}
+              label={"Return Rate"}
+              sign="%"
+            />
             <FormField
               control={form.control}
               name="compound"
@@ -79,15 +90,11 @@ function InputDetails({ setData, setFormResult, tab }: Props) {
                       <SelectItem value="Monthly">Monthly</SelectItem>
                     </SelectContent>
                   </Select>
-                  {/* <FormDescription>
-                    You can manage email addresses in your{" "}
-                    <Link href="/examples/forms">email settings</Link>.
-                  </FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormInputs form={form} name={"addOn"} label={"Add-on"} />
+            <FormInputs form={form} name={"addOn"} label={"Add-on"} sign="$" />
             <FormField
               control={form.control}
               name="type"

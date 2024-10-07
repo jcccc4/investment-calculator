@@ -32,6 +32,7 @@ export const initialData: Inputs = {
   each: "Month",
 };
 
+
 export default function Home() {
   const [formResult, setFormResult] = useState<Inputs>(initialData);
   const [data, setData] = useState<Data[]>(investmentCalculator(initialData));
