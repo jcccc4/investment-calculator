@@ -41,13 +41,9 @@ export const columns: ColumnDef<Data>[] = [
 
 export default function CardTable({
   data,
-  setData,
-  formResult,
   setTab,
 }: {
   data: Data[];
-  formResult: Inputs;
-  setData: Dispatch<SetStateAction<Data[]>>;
   setTab: Dispatch<SetStateAction<string>>;
 }) {
   const table = useReactTable({
@@ -71,7 +67,7 @@ export default function CardTable({
         className="w-full "
         onValueChange={(value) => {
           setTab(value);
-          setData(investmentCalculator(formResult, value));
+          //setData(investmentCalculator(formResult, value));
         }}
       >
         <TabsList className=" grid grid-cols-2">

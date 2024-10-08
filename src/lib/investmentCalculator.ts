@@ -1,10 +1,9 @@
 import { Data, Inputs } from "@/app/page";
-import { formatCurrency } from "./formatters";
 
 export function investmentCalculator(
   data: Inputs,
   frequency: string = "yearly"
-) {
+): Data[] {
   let endingBalance = data.startingAmount;
   let totalDeposit = data.startingAmount;
   let yearlyInterest = 0;
@@ -65,9 +64,9 @@ export function investmentCalculator(
       case "monthly":
         resultArr.push({
           year: month + 1,
-          deposit: formatCurrency(totalDeposit),
-          interest: formatCurrency(interestEarned),
-          endingBalance: formatCurrency(endingBalance),
+          deposit: Number(totalDeposit),
+          interest: Number(interestEarned),
+          endingBalance: Number(endingBalance),
         });
         totalDeposit = 0;
         break;
@@ -75,9 +74,9 @@ export function investmentCalculator(
         if ((month + 1) % 12 == 0) {
           resultArr.push({
             year: (month + 1) / 12,
-            deposit: formatCurrency(totalDeposit),
-            interest: formatCurrency(yearlyInterest),
-            endingBalance: formatCurrency(endingBalance),
+            deposit: Number(totalDeposit),
+            interest: Number(yearlyInterest),
+            endingBalance: Number(endingBalance),
           });
           yearlyInterest = 0;
           totalDeposit = 0;

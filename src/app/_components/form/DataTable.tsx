@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  ColumnDef,
-  Table as ReactTable,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, Table as ReactTable } from "@tanstack/react-table";
 
 import {
   Table,
@@ -18,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Data } from "@/app/page";
+import { formatCurrency } from "@/lib/formatters";
 
 interface DataTableProps {
   table: ReactTable<Data>;
@@ -58,17 +52,18 @@ export function DataTable({ table }: DataTableProps) {
             <TableCell className="text-center font-medium ">
               {row.original.year}
             </TableCell>
-            <TableCell className="text-right">{row.original.deposit}</TableCell>
             <TableCell className="text-right">
-              {row.original.interest}
+              {formatCurrency(row.original.deposit)}
             </TableCell>
             <TableCell className="text-right">
-              {row.original.endingBalance}
+              {formatCurrency(row.original.interest)}
+            </TableCell>
+            <TableCell className="text-right">
+              {formatCurrency(row.original.endingBalance)}
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
-     
     </Table>
   );
 }

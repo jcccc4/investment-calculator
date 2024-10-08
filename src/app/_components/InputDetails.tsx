@@ -20,15 +20,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { investmentCalculator } from "../../lib/investmentCalculator";
 
 type Props = {
-  setData: Dispatch<SetStateAction<Data[]>>;
   setFormResult: Dispatch<SetStateAction<Inputs>>;
   tab: string;
 };
 
-function InputDetails({ setData, setFormResult, tab }: Props) {
+function InputDetails({setFormResult, tab }: Props) {
   const form = useForm<Inputs>({
     defaultValues: initialData,
   });
@@ -36,7 +34,6 @@ function InputDetails({ setData, setFormResult, tab }: Props) {
     data.addOn = Number(data.addOn);
     data.startingAmount = Number(data.startingAmount);
     setFormResult(data);
-    setData(investmentCalculator(data, tab));
   };
 
   return (
