@@ -14,30 +14,27 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Data, PieData } from "@/app/page";
+import { PieData } from "@/app/page";
 import { formatCurrency } from "@/lib/formatters";
 
 export const description = "A donut chart";
 
 const chartConfig = {
-  chrome: {
-    label: "Chrome",
+  amount: {
+    label: "Amount",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Safari",
+  contribution: {
+    label: "Contribution",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-
-  test: {
-    label: "test",
+  interest: {
+    label: "Interest",
     color: "hsl(var(--chart-3))",
   },
 } satisfies ChartConfig;
@@ -48,24 +45,19 @@ type Props = {
 export function Component({ pieGraphData }: Props) {
   const chartData = [
     {
-      browser: "Ending Balance",
-      visitors: pieGraphData.endingBalance,
-      fill: "var(--color-chrome)",
-    },
-    {
       browser: "Starting Amount",
       visitors: pieGraphData.startingAmount,
-      fill: "var(--color-safari)",
+      fill: "var(--color-amount)",
     },
     {
       browser: "Total Contribution",
       visitors: pieGraphData.totalContributions,
-      fill: "var(--color-firefox)",
+      fill: "var(--color-contribution)",
     },
     {
       browser: "Total Interest",
       visitors: pieGraphData.totalInterest,
-      fill: "black",
+      fill: "var(--color-interest)",
     },
   ];
   return (
@@ -107,15 +99,25 @@ export function Component({ pieGraphData }: Props) {
               nameKey="browser"
               innerRadius={60}
             />
+            {/* <ChartLegend content={<ChartLegendContent />} /> */}
           </PieChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+      <CardFooter className="flex-col gap-2 items-start">
+        <h2 className="font-semibold">Legends</h2>
+        <div className="">
+          <div className="flex gap-4">
+            <div className="w-4 h-4 rounded-full bg-[hsl(var(--chart-1))]"></div>
+            <div>Starting Amount</div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-4 h-4 rounded-full bg-[hsl(var(--chart-2))]"></div>
+            <div>Total Contribution</div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-4 h-4 rounded-full bg-[hsl(var(--chart-3))]"></div>
+            <div>Total Interest</div>
+          </div>
         </div>
       </CardFooter>
     </Card>

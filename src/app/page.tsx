@@ -5,7 +5,7 @@ import CardTable from "./_components/CardTable";
 import { useState } from "react";
 import { investmentCalculator } from "../lib/investmentCalculator";
 import { Component as PieChart } from "@/components/ui/pie-chart";
-import { formatCurrency } from "@/lib/formatters";
+import { Component as BarChart } from "@/components/ui/bar-chart";
 
 export type Inputs = {
   startingAmount: number;
@@ -34,12 +34,6 @@ export const initialData: Inputs = {
   each: "Month",
 };
 
-type PieProps = {
-  data: Data[];
-  startingAmount: number;
-  totalContributions: number;
-  totalInterest: number;
-};
 export type PieData = {
   endingBalance: number;
   startingAmount: number;
@@ -79,6 +73,7 @@ export default function Home() {
         <PieChart
           pieGraphData={pieChartCalculator(dataArr, formResult.startingAmount)}
         />
+        <BarChart dataArr={dataArr} startingAmount={formResult.startingAmount}/>
       </main>
     </div>
   );
