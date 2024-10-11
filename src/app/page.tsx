@@ -10,7 +10,12 @@ import { Data, Inputs, initialData } from "@/lib/types";
 
 
 
-
+export type PieData = {
+  endingBalance: number;
+  startingAmount: number;
+  totalContributions: number;
+  totalInterest: number;
+};
 function pieChartCalculator(data: Data[], startingAmount: number) {
   const totalContributions =
     data.reduce((sum, obj) => {
