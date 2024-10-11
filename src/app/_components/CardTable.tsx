@@ -61,7 +61,7 @@ export default function CardTable({
 
   table.getColumn;
   return (
-    <div>
+    <div className="w-full bg-white">
       <Tabs
         defaultValue="yearly"
         className="w-full "

@@ -61,12 +61,12 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-muted text-foreground;
   }
 }
 
 @layer components {
   .child-card {
-    @apply border border-muted shadow-section rounded-2xl p-4 mt-4;
+    @apply border-2 border-muted shadow-section rounded-2xl p-4;
   }
 }

@@ -59,7 +59,7 @@ export function Component({
   });
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardContent>
         <ChartContainer
           config={chartConfig}

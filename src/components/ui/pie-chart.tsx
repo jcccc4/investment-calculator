@@ -61,7 +61,7 @@ export function Component({ pieGraphData }: Props) {
     },
   ];
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col w-full">
       <CardHeader className="">
         <CardTitle>Results</CardTitle>
       </CardHeader>

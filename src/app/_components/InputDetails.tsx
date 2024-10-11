@@ -37,7 +37,7 @@ function InputDetails({setFormResult, tab }: Props) {
   };
 
   return (
-    <section>
+    <section className="w-full lg:min-w-[400px] lg:max-w-[464px] bg-white mt-0">
       <section>
         <h2 className="text-2xl">Input Details</h2>
       </section>
