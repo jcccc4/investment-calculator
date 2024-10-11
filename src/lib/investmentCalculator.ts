@@ -1,4 +1,4 @@
-import { Data, Inputs } from "@/app/page";
+import { Inputs, Data } from "./types";
 
 export function investmentCalculator(
   data: Inputs,

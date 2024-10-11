@@ -8,9 +8,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import React, { Dispatch, SetStateAction } from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import FormInputs from "./form/FormInputs";
-import { Data, initialData, Inputs } from "../page";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import {
@@ -20,13 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Inputs, initialData } from "@/lib/types";
 
 type Props = {
   setFormResult: Dispatch<SetStateAction<Inputs>>;
-  tab: string;
 };
 
-function InputDetails({setFormResult, tab }: Props) {
+function InputDetails({ setFormResult }: Props) {
   const form = useForm<Inputs>({
     defaultValues: initialData,
   });

@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Data } from "@/app/page";
 import { formatCurrency } from "@/lib/formatters";
+import { Data } from "@/lib/types";
 
 interface DataTableProps {
   table: ReactTable<Data>;

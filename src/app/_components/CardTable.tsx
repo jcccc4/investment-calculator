@@ -1,15 +1,5 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { Dispatch, SetStateAction } from "react";
-import { Data, Inputs } from "../page";
-import { investmentCalculator } from "../../lib/investmentCalculator";
 
 import {
   ColumnDef,
@@ -19,6 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "./form/DataTable";
+import { Data } from "@/lib/types";
 
 export const columns: ColumnDef<Data>[] = [
   {
@@ -59,7 +50,6 @@ export default function CardTable({
     },
   });
 
-  table.getColumn;
   return (
     <div className="w-full bg-white">
       <Tabs
@@ -67,7 +57,6 @@ export default function CardTable({
         className="w-full "
         onValueChange={(value) => {
           setTab(value);
-          //setData(investmentCalculator(formResult, value));
         }}
       >
         <TabsList className=" grid grid-cols-2">

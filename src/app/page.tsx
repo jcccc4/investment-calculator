@@ -6,40 +6,11 @@ import { useState } from "react";
 import { investmentCalculator } from "../lib/investmentCalculator";
 import { Component as PieChart } from "@/components/ui/pie-chart";
 import { Component as BarChart } from "@/components/ui/bar-chart";
+import { Data, Inputs, initialData } from "@/lib/types";
 
-export type Inputs = {
-  startingAmount: number;
-  after: number;
-  returnRate: number;
-  compound: string;
-  addOn: number;
-  type: string;
-  each: string;
-};
 
-export type Data = {
-  year: number;
-  deposit: number;
-  interest: number;
-  endingBalance: number;
-};
 
-export const initialData: Inputs = {
-  startingAmount: 20000,
-  after: 10,
-  returnRate: 6,
-  compound: "Annually",
-  addOn: 1000,
-  type: "End",
-  each: "Month",
-};
 
-export type PieData = {
-  endingBalance: number;
-  startingAmount: number;
-  totalContributions: number;
-  totalInterest: number;
-};
 function pieChartCalculator(data: Data[], startingAmount: number) {
   const totalContributions =
     data.reduce((sum, obj) => {
@@ -69,7 +40,7 @@ export default function Home() {
       </header>
       <main className="[&>section>*]:child-card flex flex-col gap-4">
         <section className="lg:flex lg:gap-4">
-          <InputDetails setFormResult={setFormResult} tab={tab} />
+          <InputDetails setFormResult={setFormResult} />
           <CardTable data={dataArr} setTab={setTab} />
         </section>
         <section className="lg:flex lg:gap-4 mb-10">

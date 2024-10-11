@@ -1,6 +1,5 @@
 import React from "react";
 import { FieldPath, UseFormReturn } from "react-hook-form";
-import { Inputs } from "@/app/page";
 import {
   FormControl,
   FormField,
@@ -9,6 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Inputs } from "@/lib/types";
 
 type Props = {
   form: UseFormReturn<Inputs>;
