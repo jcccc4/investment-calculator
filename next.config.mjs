@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['https://investment-calculator-jcccc4s-projects.vercel.app/'],
+        domains: ['https://investment-calculator-jcccc4s-projects.vercel.app'],
       },
 };
 
