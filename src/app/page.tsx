@@ -7,7 +7,7 @@ import { investmentCalculator } from "../lib/investmentCalculator";
 import { Component as PieChart } from "@/components/ui/pie-chart";
 import { Component as BarChart } from "@/components/ui/bar-chart";
 import { Data, Inputs, initialData } from "@/lib/types";
-
+import Logo from "../../public/images/Logo.png";
 
 
 export type PieData = {
@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="bg-muted max-w-[1280px] mx-4 lg:px-10 lg:mx-auto">
       <header className="flex my-4 items-center gap-2  ">
-        <Image src="/images/logo.png" alt={"logo"} width="40" height="40" />
+        <Image src={Logo} alt={"logo"} width="40" height="40" />
         <h1 className="text-2xl gap-2">Investment Calculator</h1>
       </header>
       <main className="[&>section>*]:child-card flex flex-col gap-4">
